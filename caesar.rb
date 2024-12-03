@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def cycle_through(floor, ceiling, index, shift)
   negative_flag = false
   if shift.negative?
@@ -5,26 +7,24 @@ def cycle_through(floor, ceiling, index, shift)
     negative_flag = true
   end
 
-  while(shift > 0)
-    if ((index == ceiling) and (!negative_flag))
+  while shift.positive?
+    if (index == ceiling) && !negative_flag
       index = floor
-    elsif (index == floor) and (negative_flag)
+    elsif (index == floor) && negative_flag
       index = ceiling
+    elsif negative_flag
+      index -= 1
     else
-      if(negative_flag)
-        index-= 1
-      else
-        index+= 1
-      end
+      index += 1
     end
 
-    shift-= 1
-    
+    shift -= 1
+
   end
   index
 end
 
-def caesar_cipher(message, shift=0)
+def caesar_cipher(message, shift = 0)
   new_msg = message.chars.map do |c|
     ascii_code = c.ord
     case ascii_code
@@ -40,3 +40,5 @@ def caesar_cipher(message, shift=0)
   end
   new_msg.join
 end
+
+p caesar_cipher('Add caesar_cypher function', 5)
