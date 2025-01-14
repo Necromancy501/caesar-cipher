@@ -40,5 +40,3 @@ def caesar_cipher(message, shift = 0)
   end
   new_msg.join
 end
-
-p caesar_cipher('Add caesar_cypher function', 5)
